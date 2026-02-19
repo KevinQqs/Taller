@@ -3,6 +3,7 @@ venv/
 .venv/
 .env
 env/
+MiEntornoVirtual
 
 # Archivos de caché de Python
 __pycache__/
