@@ -15,28 +15,14 @@ class Geometria:
         return 2*(base + altura)
     
     def area_circulo(self, radio):
-        """
-        Calcula el área de un círculo.
-        
-        Args:
-            radio (float): Radio del círculo
-            
-        Returns:
-            float: Área del círculo
-        """
-        pass
+        if radio < 0:
+            return 0
+        return 3.1416 * radio**2
     
     def perimetro_circulo(self, radio):
-        """
-        Calcula el perímetro (circunferencia) de un círculo.
-        
-        Args:
-            radio (float): Radio del círculo
-            
-        Returns:
-            float: Perímetro del círculo
-        """
-        pass
+        if radio < 0:
+            return 0
+        return 2 * 3.1416 * radio
     
     def area_triangulo(self, base, altura):
         """
