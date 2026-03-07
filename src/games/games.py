@@ -32,33 +32,31 @@ class Games:
             return "muy bajo"
     
     def ta_te_ti_ganador(self, tablero):
-        # Verificar filas
-        for fila in tablero:
-            if fila[0] == fila[1] == fila[2] and fila[0] != " ":
-                return fila[0]
 
-    # Verificar columnas
-        for col in range(3):
-         if (tablero[0][col] == tablero[1][col] == tablero[2][col] 
-                and tablero[0][col] != " "):
-                return tablero[0][col]
+        # revisar filas
+        for i in range(3):
+            if tablero[i][0] == tablero[i][1] == tablero[i][2] != " ":
+                return tablero[i][0]
 
-    # Verificar diagonal principal
-        if (tablero[0][0] == tablero[1][1] == tablero[2][2] 
-             and tablero[0][0] != " "):
+        # revisar columnas
+        for j in range(3):
+            if tablero[0][j] == tablero[1][j] == tablero[2][j] != " ":
+                return tablero[0][j]
+
+        # diagonal principal
+        if tablero[0][0] == tablero[1][1] == tablero[2][2] != " ":
             return tablero[0][0]
 
-    # Verificar diagonal secundaria
-        if (tablero[0][2] == tablero[1][1] == tablero[2][0] 
-            and tablero[0][2] != " "):
+        # diagonal secundaria
+        if tablero[0][2] == tablero[1][1] == tablero[2][0] != " ":
             return tablero[0][2]
 
-    # Si hay espacios vacíos → continúa
+        # verificar si quedan espacios
         for fila in tablero:
             if " " in fila:
-             return "continua"
+                return "continua"
 
-    # Si no hay ganador ni espacios → empate
+        # si no hay espacios y nadie ganó
         return "empate"
     
     def generar_combinacion_mastermind(self, longitud, colores_disponibles):
