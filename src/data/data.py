@@ -5,121 +5,132 @@ class Data:
     """
     
     def invertir_lista(self, lista):
-        """
-        Invierte el orden de los elementos en una lista sin usar reversed() o lista[::-1].
-        
-        Args:
-            lista (list): Lista a invertir
-            
-        Returns:
-            list: Lista con los elementos en orden inverso
-        """
-        pass
+        lista_invertida = []
+    
+        for i in range(len(lista) - 1, -1, -1):
+            lista_invertida.append(lista[i])
+    
+        return lista_invertida
     
     def buscar_elemento(self, lista, elemento):
-        """
-        Busca un elemento en una lista y devuelve su índice (o -1 si no existe).
-        Implementación manual sin usar index().
-        
-        Args:
-            lista (list): Lista donde buscar
-            elemento: Elemento a buscar
-            
-        Returns:
-            int: Índice del elemento o -1 si no se encuentra
-        """
-        pass
+        for i in range(len(lista)):
+            if lista[i] == elemento:
+                return i
+        return -1
     
     def eliminar_duplicados(self, lista):
-        """
-        Elimina elementos duplicados de una lista sin usar set().
-        Mantiene el orden original de aparición.
+        lista_sin_duplicados = []
         
-        Args:
-            lista (list): Lista con posibles duplicados
+        for elemento in lista:
+            existe = False
+            for e in lista_sin_duplicados:
+                if e == elemento and type(e) == type(elemento):
+                    existe = True
+                    break
             
-        Returns:
-            list: Lista sin elementos duplicados
-        """
-        pass
+            if not existe:
+                lista_sin_duplicados.append(elemento)
+        return lista_sin_duplicados
     
     def merge_ordenado(self, lista1, lista2):
-        """
-        Combina dos listas ordenadas en una sola lista ordenada.
+        merged = []
+        i = j = 0
         
-        Args:
-            lista1 (list): Primera lista ordenada
-            lista2 (list): Segunda lista ordenada
-            
-        Returns:
-            list: Lista combinada y ordenada
-        """
-        pass
+        while i < len(lista1) and j < len(lista2):
+            if lista1[i] < lista2[j]:
+                merged.append(lista1[i])
+                i += 1
+            else:
+                merged.append(lista2[j])
+                j += 1
+        
+        while i < len(lista1):
+            merged.append(lista1[i])
+            i += 1
+        
+        while j < len(lista2):
+            merged.append(lista2[j])
+            j += 1
+        
+        return merged
     
     def rotar_lista(self, lista, k):
-        """
-        Rota los elementos de una lista k posiciones a la derecha.
+        if len(lista) == 0:
+         return []
         
-        Args:
-            lista (list): Lista a rotar
-            k (int): Número de posiciones a rotar
-            
-        Returns:
-            list: Lista rotada
-        """
-        pass
+        k = k % len(lista)  
+        return lista[-k:] + lista[:-k]
     
     def encuentra_numero_faltante(self, lista):
-        """
-        Encuentra el número faltante en una lista de enteros del 1 al n.
-        
-        Args:
-            lista (list): Lista de enteros del 1 al n con un número faltante
-            
-        Returns:
-            int: El número que falta en la secuencia
-        """
-        pass
+        n = len(lista) + 1  
+        suma_esperada = n * (n + 1) // 2  
+        suma_actual = sum(lista) 
+        return suma_esperada - suma_actual  
     
     def es_subconjunto(self, conjunto1, conjunto2):
-        """
-        Verifica si conjunto1 es subconjunto de conjunto2 sin usar set.
-        
-        Args:
-            conjunto1 (list): Posible subconjunto
-            conjunto2 (list): Conjunto principal
-            
-        Returns:
-            bool: True si conjunto1 es subconjunto de conjunto2, False en caso contrario
-        """
-        pass
+        return all(elem in conjunto2 for elem in conjunto1)
     
     def implementar_pila(self):
-        """
-        Implementa una estructura de datos tipo pila (stack) usando listas.
-        
-        Returns:
-            dict: Diccionario con métodos push, pop, peek y is_empty
-        """
-        pass
-    
+        pila = []
+
+        def push(elemento):
+            pila.append(elemento)
+
+        def pop():
+            if len(pila) == 0:
+                return None
+            return pila.pop()
+
+        def peek():
+            if len(pila) == 0:
+                return None
+            return pila[-1]
+
+        def is_empty():
+            return len(pila) == 0
+
+        return {
+            "push": push,
+            "pop": pop,
+            "peek": peek,
+            "is_empty": is_empty
+        }
     def implementar_cola(self):
-        """
-        Implementa una estructura de datos tipo cola (queue) usando listas.
-        
-        Returns:
-            dict: Diccionario con métodos enqueue, dequeue, peek y is_empty
-        """
-        pass
+        cola = []
+
+        def enqueue(elemento):
+            cola.append(elemento)
+
+        def dequeue():
+            if len(cola) == 0:
+                return None
+            return cola.pop(0)
+
+        def peek():
+            if len(cola) == 0:
+                return None
+            return cola[0]
+
+        def is_empty():
+            return len(cola) == 0
+
+        return {
+            "enqueue": enqueue,
+            "dequeue": dequeue,
+            "peek": peek,
+            "is_empty": is_empty
+        }
     
     def matriz_transpuesta(self, matriz):
-        """
-        Calcula la transpuesta de una matriz.
-        
-        Args:
-            matriz (list): Lista de listas que representa una matriz
-            
-        Returns:
-            list: Matriz transpuesta
-        """
-        pass
+        if len(matriz) == 0:
+            return []
+    
+        filas = len(matriz)
+        columnas = len(matriz[0])
+        transpuesta = [[0] * filas for _ in range(columnas)]
+    
+        for i in range(filas):
+            for j in range(columnas):
+                transpuesta[j][i] = matriz[i][j]
+
+        return transpuesta
